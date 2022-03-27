@@ -1,52 +1,33 @@
-//author name - fejiro 
 import java.math.*;
 public class Factorial{
-  private long n;
-  private long r;
-  private double ans;
+  private BigInteger n = new BigInteger("0");
+  private BigInteger r = new BigInteger("0");
 
-  public Factorial(long iniN, long iniR){
-     n = iniN;
-     r = iniR;
-     ans = 0.0;
-    
-  }
-  
-  public static long facVal(long val){
-    long i = val -1;
-    if(val == 0){
-      val = 1;
-    } else {
-      while(i > 0){
-        val *= i;i--;
-      }
+  public Factorial(BigInteger iniN, BigInteger iniR){
+    if(iniR.compareTo(iniN) == 1){
+      System.out.println("please enter n ≥ r ≥ 0");
     }
-  
-    return val;
+    n = iniN;
+    r = iniR;
   }
-  public double permutation(){
-    double retVal = 0.0;
-    long low = n-r;
-    if(n == r){
-      retVal = facVal(n);
-    } else if(n > r){
-      retVal = facVal(n)/facVal(low);
+  public static BigInteger facVal(BigInteger val){
+    BigInteger retVal = val;
+    if(val.intValue() == 0){
+      retVal = new BigInteger("1");
     }else{
-      retVal = 0.0;
-    }
-    
+      for(int i = 1; i < val.intValue(); i++){
+        retVal = retVal.multiply(BigInteger.valueOf(i));
+      }
+    } 
     return retVal;
   }
-  public double combination(){
-    double result2 = 1.0;
-    long o = n-r;
-    if(n >= r){
-      result2 = (facVal(n))/(facVal(o)*facVal(r));
-    }else{
-      result2 = 0.0;
-      System.out.println("The answer below (0.0) is incorrect, please ensure your r value is less than n");
-    }
-    return result2;
+
+  public BigInteger permutation(){
+    return facVal(n).divide(facVal(n.subtract(r)));
+    //returns the the value of ⁿPᵣ using the formula n!/(n-r)!
   }
-  
+  public BigInteger combination(){
+    return facVal(n).divide((facVal(n.subtract(r)).multiply(facVal(r))));
+    //returns the the value of ⁿCᵣ using the formula n!/(r!(n-r)!)
+  }
 }

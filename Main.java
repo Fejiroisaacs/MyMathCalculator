@@ -1,7 +1,9 @@
 import java.util.Scanner;
+import java.math.*;
 
 public class Main {
   public static void main(String[] args) {
+    Binomial.myArr();    
     Scanner sam = new Scanner(System.in);
     int userChoice = 0;
     int a = 0;
@@ -38,7 +40,7 @@ public class Main {
       n = isValidNum(sam);
       System.out.print("Enter a value for r: ");
       r = isValidNum(sam);
-      Factorial f1 = new Factorial(n,r);
+      Factorial f1 = new Factorial(BigInteger.valueOf(n), BigInteger.valueOf(r));
       System.out.println(f1.permutation());
     }else if(userChoice == 3){
       System.out.println("Here, you would input the values of n and r from ⁿCᵣ");
@@ -46,14 +48,13 @@ public class Main {
       n = isValidNum(sam);
       System.out.print("Enter a value for r: ");
       r = isValidNum(sam);
-      Factorial f1 = new Factorial(n,r);
+      Factorial f1 = new Factorial(BigInteger.valueOf(n), BigInteger.valueOf(r));
       System.out.println(f1.combination());
     }else if(userChoice == 4){
       System.out.println("Here, you would input a number you wish to factorial. \nIn mathematics, the factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n. ");
       System.out.print("Enter the number you wish to factorial: ");
       facNum = isValidNum(sam);
-      long facAns = Factorial.facVal(facNum);
-      System.out.println(facAns);
+      System.out.println(Factorial.facVal(BigInteger.valueOf(facNum)));
     }else{
       System.out.println("This cannot possibly be an option. You broke my code. WHY???????????????????????????????????");
     }
